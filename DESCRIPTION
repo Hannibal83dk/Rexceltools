@@ -1,4 +1,4 @@
-Package: exceltools
+Package: Rexceltools
 Type: Package
 Title: Tools for loading and saving excell fils and sheets
 Version: 0.1.0

@@ -4,7 +4,7 @@
 \alias{createexcelfile}
 \title{load specific sheets from a chosen excell file}
 \usage{
-createexcelfile(title, ..., overwrite = TRUE)
+createexcelfile(title, ..., overwrite = FALSE)
 }
 \arguments{
 \item{title}{A filename for the excel file to be created}

@@ -2,6 +2,9 @@
 #' @import readxl
 #' @import openxlsx
 
+library(readxl)
+library(openxlsx)
+
 chooseSheet <- function(sheets){
   value = 0
   cat("Choose a sheet to add concentrations \n")
@@ -57,7 +60,7 @@ readsheet <- function(){
 #' @return A tibble containing the data from the chosen sheet
 #' @export
 #'
-createexcelfile <- function(title, ..., overwrite = TRUE){
+createexcelfile <- function(title, ..., overwrite = FALSE){
 
   wb <- createWorkbook()
 
@@ -65,7 +68,7 @@ createexcelfile <- function(title, ..., overwrite = TRUE){
   sheetnames <- as.list(substitute(list(...)))
   sheetnames <- unlist(sheetnames[2: length(sheetnames)])
 
-  for(i in 1:3){
+  for(i in 1:length(list(...))){
     addWorksheet(wb, sheetnames[[i]])
     writeData(wb, sheetnames[[i]], sheets[[i]])
   }
@@ -75,11 +78,13 @@ createexcelfile <- function(title, ..., overwrite = TRUE){
   cat(paste("The file ", title, ".xlsx", " has been saved at ", as.character(getwd()), sep = ""))
 }
 
-# testsheet1 <- readsheet()
-# testsheet2 <- readsheet()
-# testsheet3 <- readsheet()
 
-# createexcellfile("excelfiletest2", testsheet1, testsheet2, testsheet3, overwrite = FALSE)
+
+#testsheet1 <- readsheet()
+#testsheet2 <- readsheet()
+#testsheet3 <- readsheet()
+
+#createexcelfile("excelfiletest3", testsheet1)
 
 
 

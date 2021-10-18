@@ -7,7 +7,7 @@ library(openxlsx)
 
 chooseSheet <- function(sheets){
   value = 0
-  cat("Choose a sheet to load \n")
+
   for (i in sheets) {
     cat(paste(which(sheets == i), i, "\n"))
   }
@@ -35,16 +35,25 @@ chooseSheet <- function(sheets){
 readsheet <- function(filepath = NULL, sheet = NULL){
 
   if (is.null(filepath)){
-    cat("Choose a file to open")
+    cat("Choose a file to open\n")
     filepath <- file.choose()
   }
 
   sheets <- excel_sheets(filepath)
 
-
-  if (is.null(sheet)){
-    sheet <- chooseSheet(sheets)
+  if(length(sheets) < sheet){
+    cat("The sheet number provided is larger then the available number of sheets\n")
   }
+
+  if(length(sheets) == 1)
+    {
+      cat("Only one sheet avalable, selecting sheet 1\n" )
+      sheet = 1
+    } else if (is.null(sheet) || length(sheets) < sheet)
+      {
+        cat("Choose a sheet to load \n")
+        sheet <- chooseSheet(sheets)
+      }
 
   ##  need only pick first sheet if there only is one, then no selecteion from user
 
